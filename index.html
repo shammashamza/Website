@@ -373,8 +373,8 @@
                         Send Message Us
                       </h5>
                     </div>
-                    <div>
-                      <form action="contact.php" method="post" role="form" class="php-email-form">
+                           <div>
+                      <form  method="post" autocomplete="off" name="google-sheet">
                         <div class="row">
                           <div class="col-md-12 mb-3">
                             <div class="form-group">
@@ -400,11 +400,7 @@
                               <div class="validate"></div>
                             </div>
                           </div>
-                          <div class="col-md-12 text-center mb-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                          </div>
+               
                           <div class="col-md-12 text-center">
                             <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
                           </div>
@@ -485,6 +481,22 @@
 
   <!-- Template Main JS File -->
   <script src="main.js"></script>
+
+  <!-- Script for Form Submission google sheet -->
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby6x6bnc8kTS68dRRYQ1nwbf9BiYgQrS88iZ2SKVg/exec'
+    const form = document.forms['google-sheet']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </body>
 
